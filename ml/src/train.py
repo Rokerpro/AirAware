@@ -10,6 +10,8 @@ Steps
 Models (one model shared by all stations, because most stations have < 150 train rows):
   linear_regression  ordinary least squares, easy to explain via its coefficients
   random_forest      many decision trees averaged, can learn non-linear effects (e.g. month)
+  random_forest_change  same forest, but trained to predict tomorrow MINUS today (v2).
+                        Chosen as the improvement on validation data, never on test data.
 """
 import json
 from pathlib import Path
@@ -56,12 +58,22 @@ def main() -> None:
         rf = make_rf(p).fit(fit[FEATURES], fit.target_pm25)
         val_rows.append({"model": "random_forest", "params": json.dumps(p),
                          "val_mae": mae(val.target_pm25, rf.predict(val[FEATURES]))})
+    # Improvement (v2): learn tomorrow's CHANGE from today, then add today back.
+    # A forest averages training targets, so predicting levels pulls extreme days toward
+    # the middle; predicting the change keeps persistence as the starting point.
+    for p in RF_GRID:
+        rf = make_rf(p).fit(fit[FEATURES], fit.target_pm25 - fit.pm25_today)
+        val_rows.append({"model": "random_forest_change", "params": json.dumps(p),
+                         "val_mae": mae(val.target_pm25, val.pm25_today + rf.predict(val[FEATURES]))})
     val_table = pd.DataFrame(val_rows).round({"val_mae": 2})
     print(val_table.to_string(index=False), "\n")
 
-    best = val_table[val_table.model == "random_forest"].sort_values("val_mae").iloc[0]
-    best_params = json.loads(best.params)
-    print(f"chosen RF settings: {best_params} (val MAE {best.val_mae})")
+    def pick(model: str) -> dict:
+        best = val_table[val_table.model == model].sort_values("val_mae", kind="stable").iloc[0]
+        print(f"chosen {model} settings: {best.params} (val MAE {best.val_mae})")
+        return json.loads(best.params)
+
+    best_params, change_params = pick("random_forest"), pick("random_forest_change")
 
     # Refit on all train rows and save
     MODEL_DIR.mkdir(exist_ok=True)
@@ -69,6 +81,9 @@ def main() -> None:
     final = {
         "linear_regression": LinearRegression().fit(train[FEATURES], train.target_pm25),
         "random_forest": make_rf(best_params).fit(train[FEATURES], train.target_pm25),
+        # predicts (tomorrow - today); forecast = pm25_today + prediction
+        "random_forest_change": make_rf(change_params).fit(
+            train[FEATURES], train.target_pm25 - train.pm25_today),
     }
     for name, model in final.items():
         joblib.dump(model, MODEL_DIR / f"{name}.joblib")
@@ -80,9 +95,14 @@ def main() -> None:
         "test_start": TEST_START,
         "val_start": VAL_START,
         "rf_params": best_params,
+        "rf_change_params": change_params,
         "seed": SEED,
         "model_versions": {"linear_regression": "linear_regression_v1",
-                           "random_forest": "random_forest_v1"},
+                           "random_forest": "random_forest_v1",
+                           "random_forest_change": "random_forest_v2"},
+        # models listed here predict (tomorrow - today); add pm25_today to get the forecast
+        "predicts_change": ["random_forest_change"],
+        "demo_model": "random_forest_change",
     }
     (MODEL_DIR / "meta.json").write_text(json.dumps(meta, indent=2))
     val_table.to_csv(OUT_DIR / "validation_scores.csv", index=False)
