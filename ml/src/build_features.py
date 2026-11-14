@@ -18,7 +18,12 @@ FEATURES = ["pm25_today", "pm25_yesterday", "pm25_mean3", "temp_c", "humidity_pc
             "wind_kmh", "precip_mm", "pressure_hpa", "month"]
 
 
-def build() -> pd.DataFrame:
+def daily_table() -> pd.DataFrame:
+    """Features for every station-day, including days with no target yet (e.g. the latest day).
+
+    Used by build() for training and by predict.py at inference time, so both use the
+    exact same feature code.
+    """
     pm = pd.read_csv(DATA_DIR / "pm25_daily.csv", parse_dates=["date"])
     pm = pm[pm["coverage_pct"] >= MIN_COVERAGE_PCT]
     weather = pd.read_csv(DATA_DIR / "weather_daily.csv", parse_dates=["date"])
@@ -41,7 +46,11 @@ def build() -> pd.DataFrame:
     cams_next = cams.assign(date=cams["date"] - pd.Timedelta(days=1)).rename(
         columns={"cams_pm25": "cams_tomorrow"})
     df = df.merge(cams_next, on="date", how="left")
+    return df
 
+
+def build() -> pd.DataFrame:
+    df = daily_table()
     df = df.dropna(subset=FEATURES + ["target_pm25"])
     df["split"] = (df["date"] >= TEST_START).map({True: "test", False: "train"})
     return df[["station_id", "station", "date", "split"] + FEATURES + ["target_pm25", "cams_tomorrow"]]
