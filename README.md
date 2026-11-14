@@ -88,7 +88,24 @@ See [`docs/API_CONTRACT.md`](docs/API_CONTRACT.md). It is a draft and not implem
 
 ## Model evaluation results
 
-**(TBD)** No models have been trained, so there are no results yet. This section will report actual results only, including failures: MAE against the baselines ("tomorrow = today" and CAMS), warning recall and precision, and error by station and season.
+Initial results for Phora Durbar, Kathmandu, use a chronological split and
+142 aligned final test samples. The final Linear Regression model uses
+today's PM2.5, a three-day PM2.5 mean, and month.
+
+| Metric | Persistence baseline | Linear Regression |
+|---|---:|---:|
+| Final test MAE (μg/m³) | 3.92 | 3.29 |
+| Final test RMSE (μg/m³) | 4.92 | 4.15 |
+
+The final model improves test MAE by 0.63 μg/m³. These are held-out results,
+not training scores. At the 35 μg/m³ warning threshold, the model caught 117
+of 122 high-pollution test days, missed 5, and produced 1 false alarm.
+Persistence caught 118, missed 4, and produced 3 false alarms. The model
+therefore reduced false alarms but had slightly lower recall.
+
+The largest listed error was 2023-09-26: actual 68.38 μg/m³ versus predicted
+52.95 μg/m³. CAMS comparison, station/season breakdowns, and additional
+failure analysis remain to be added from the evaluation notebook.
 
 ## Data sources and citations
 

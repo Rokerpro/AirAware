@@ -5,6 +5,8 @@ plans/
 
 # Local Python virtual environment
 .venv/
+__pycache__/
+*.py[cod]
 
 # Machine-specific Claude Code hooks (absolute paths to local .venv and vault)
 .claude/settings.json

@@ -31,6 +31,7 @@ You are responsible for helping develop the application and integrating the ML s
 - Agree on API contracts before integration.
 - Do not simultaneously edit the same files.
 - Use small commits and pull requests.
+- Commit small, coherent, verified changes frequently and push them to the shared branch.
 
 ## AirAware Project Guidelines
 
