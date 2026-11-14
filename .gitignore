@@ -13,3 +13,7 @@ plans/
 
 # Per-session graphify scratch files
 graphify-out/cache/hook_sessions/
+
+# Python bytecode
+__pycache__/
+*.pyc

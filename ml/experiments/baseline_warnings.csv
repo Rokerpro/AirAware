@@ -1,0 +1,4 @@
+forecast,n_days,unhealthy_days,caught,missed,false_alarms,warnings_issued,recall,precision
+persist (all rows),1479,1009,949,60,55,1004,949 of 1009,949 of 1004
+persist (CAMS rows),1479,1009,949,60,55,1004,949 of 1009,949 of 1004
+CAMS (CAMS rows),1479,1009,807,202,47,854,807 of 1009,807 of 854
