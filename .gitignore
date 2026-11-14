@@ -1,0 +1,15 @@
+plans/
+
+# Secrets (e.g. OpenAQ API key)
+.env
+
+# Local Python virtual environment
+.venv/
+
+# Machine-specific Claude Code hooks (absolute paths to local .venv and vault)
+.claude/settings.json
+.claude/settings.json.bak
+.claude/settings.local.json
+
+# Per-session graphify scratch files
+graphify-out/cache/hook_sessions/
