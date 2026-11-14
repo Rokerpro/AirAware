@@ -60,8 +60,11 @@ AirAware is a Kathmandu air-quality forecasting project for the Climate track. T
 - Treat Open-Meteo air-quality values as a CAMS model baseline, not monitor ground truth.
 - OpenAQ v3 requires an API key; keep it in environment variables or Colab secrets and never commit it.
 - Compare performance across relevant groups such as stations or seasons.
-- Compare against the baselines “tomorrow = today” and the CAMS forecast.
-- Health or finance outputs, if added, must be labelled “prototype, not advice”.
+- Target: tomorrow's daily-average PM2.5 (μg/m3). Compare against the baselines “tomorrow = today” (required by the brief) and the CAMS forecast. Test on the most recent months.
+- Warn above 35 μg/m3 (US EPA 24-hour standard, suggested by the brief) and report missed warnings and false alarms separately.
+- Health outputs must be labelled “prototype, not health advice”, and the write-up must say “This project is a prototype and is not medical advice.”
+- The write-up and demo must show: who it is for, what goes in and out, the baseline vs model score, and where it fails. Say what we added beyond the suggested project.
+- Climate judges look for a fair comparison with a simple forecast, a clear link to a decision, and an unseen test period.
 
 ## Workflow
 
@@ -76,6 +79,6 @@ AirAware is a Kathmandu air-quality forecasting project for the Climate track. T
 - Do not overwrite uncommitted teammate work.
 - Respect ownership of files and agree on API contracts before integration.
 - Never commit API keys, credentials, or other sensitive data.
-- Follow the current hackathon brief when it conflicts with these guidelines.
+- Follow the official hackathon brief (`docs/CHALLENGE_BRIEF.md`) when it conflicts with these guidelines. Organizers give no technical help; deadline is Sun Nov 15, 11:59 PM ET.
 
 See [CLAUDE.md](../CLAUDE.md) for additional project context and planning details.

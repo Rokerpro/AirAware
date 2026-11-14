@@ -8,23 +8,25 @@ Build a reliable, working AI product within a 48-hour hackathon.
 
 ## What this folder is
 
-Planning folder for a two-person team of high-school students entering the Veritas AI International High School Hackathon 2026. It is a virtual 48-hour AI build: kickoff Nov 14, 12:00 AM ET; submission deadline Sun Nov 15, 11:59 PM ET. There is no code yet. Planned stack: Google Colab, pandas, scikit-learn, Gradio. The user is a beginner in ML, so keep models and code at that level and explain them.
+Planning folder for a two-person team of high-school students entering the Veritas AI International High School Hackathon 2026. It is a virtual 48-hour AI build: hacking starts Nov 14, 12:00 AM ET; submission deadline Sun Nov 15, 11:59 PM ET. There is no code yet. Planned stack: Google Colab, pandas, scikit-learn, Gradio. The user is a beginner in ML, so keep models and code at that level and explain them.
 
 `plans/` is gitignored, so these files exist only locally:
 
-- `plans/AirAware Plan.md`: the chosen project, a Kathmandu air-quality forecast for the Climate track. Covers what makes it different, roles, timeline and checklists. Backup: MonsoonRain.
+- `plans/AirAware Plan.md`: the chosen project, a Kathmandu air-quality forecast for the Climate track (suggested project 4.3.2, next-day PM2.5 forecast). Covers what makes it different, roles, timeline and checklists. Backup: MonsoonRain.
 - `plans/1 AI Health Project 1.txt`: the user's original 12 ideas.
 - `plans/Plan 2 - New Project Ideas.txt`: 12 further ideas. Dataset names in it are unverified.
 
 ## Hackathon rules that constrain the work
 
-- Before kickoff, only learning tools, browsing datasets and checking that data loads are allowed. Do not build the project early.
+- All project work happens between the start (Nov 14, 12:00 AM ET) and the deadline; earlier, only learning tools, starter notebooks and browsing datasets were allowed. AI/ML must do the project's main job.
 - Public or synthetic data only; cite every dataset, model, code source and AI tool.
 - Check model performance across groups (e.g. stations or seasons) and report real results, including failures.
 - Health or finance outputs must be labelled "prototype, not advice".
 - Teammates must be able to explain everything, so prefer simple, explainable code.
-- Submission: public code link (Colab or GitHub), write-up from the handout template, a demo video of at most 2 minutes, all team names, citations.
-- Track briefs released at kickoff override anything in these plans.
+- Submission (one person submits for the team; resubmit any time, the latest is judged): public code link (Colab or GitHub, notebook saved with outputs), one-page write-up from the official template (Google Doc, README or PDF/Word), track, each member's name, email and school, credits with links, optional demo video of at most 2 minutes (unlisted YouTube or Drive). Teams have 1-3 students. Test every link in a private window and submit a first version a few hours early.
+- Write-up and demo must answer: who is it for, what goes in/out, does it beat a baseline, where does it fail. Results only from unseen test data. Say what we added beyond the suggested project (own user, data or question).
+- Judging (PDF section 6, same four criteria for every track): technical quality, impact, creativity, clarity. Climate judges look for a fair comparison with a simple forecast, a clear link between the prediction and a decision, and an unseen test period. Honest, modest results score higher than unexplained high ones.
+- The official brief is the PDF in `docs/` (that copy is truncated at page 8); `docs/CHALLENGE_BRIEF.md` holds the summary for the pages we have. It overrides anything in `plans/`.
 
 ## Hackathon priorities
 
@@ -77,7 +79,7 @@ In order:
 
 - The Open-Meteo air-quality API works without a key, but its values come from a model (CAMS), not monitors. Use it as a baseline to compare against, not as ground truth.
 - OpenAQ v3 needs a free API key (it returns 401 without one). Kathmandu monitor history has not been verified yet. It is the main project risk.
-- Always split by time (train on older dates, test on newer). Random splits leak future data. Baselines to beat: "tomorrow = today" and the CAMS forecast.
+- Always split by time (train on older dates, test on newer). Random splits leak future data. Target: tomorrow's daily-average PM2.5 (μg/m3). Baselines to beat: "tomorrow = today" (required by the brief) and the CAMS forecast. Warn above 35 μg/m3 (US EPA 24-hour standard, suggested by the brief). Prototype line for the write-up: "This project is a prototype and is not medical advice."
 
 ## Project tooling
 

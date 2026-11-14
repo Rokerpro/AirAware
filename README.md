@@ -1,12 +1,12 @@
 # AirAware
 
-Entry for the Veritas AI International High School Hackathon 2026.
+Entry for the Veritas AI International High School Hackathon 2026 (AI + Climate track). Official brief: `docs/` and [`docs/CHALLENGE_BRIEF.md`](docs/CHALLENGE_BRIEF.md). Submission deadline: Sun Nov 15, 11:59 PM ET.
 
 **Status: planning. There is no code yet.** Sections marked **(TBD)** are filled in as the project is built. Nothing below reports real results.
 
 ## Project name and description
 
-**AirAware** is a planned next-day air-quality (AQI) forecast for Kathmandu, with an early-warning level per monitored neighbourhood and a plain-language precaution. It is prototype, not health advice.
+**AirAware** is a planned next-day air-quality forecast for Kathmandu (tomorrow's daily-average PM2.5), built for the AI + Climate track (suggested project 4.3.2), with an early-warning level per monitored neighbourhood (warn above 35 μg/m3) and a plain-language precaution for school staff deciding on outdoor activity. This project is a prototype and is not medical advice.
 
 Planned approach: compare a "tomorrow = today" baseline, linear regression and Random Forest (scikit-learn), and compare against the CAMS forecast from Open-Meteo. Details: [`docs/CHALLENGE_BRIEF.md`](docs/CHALLENGE_BRIEF.md).
 
@@ -81,14 +81,14 @@ See [`docs/API_CONTRACT.md`](docs/API_CONTRACT.md). It is a draft and not implem
 
 ## Team members
 
-**(TBD)** Two team members. Names to be added.
+**(TBD)** Two team members. Names, emails and schools to be added (the submission form needs all three for every member).
 
 - [Name], data and model
 - [Name], demo and write-up
 
 ## Model evaluation results
 
-**(TBD)** No models have been trained, so there are no results yet. This section will report actual results only, including failures: MAE against the baselines, warning recall and precision, and error by station and season.
+**(TBD)** No models have been trained, so there are no results yet. This section will report actual results only, including failures: MAE against the baselines ("tomorrow = today" and CAMS), warning recall and precision, and error by station and season.
 
 ## Data sources and citations
 
