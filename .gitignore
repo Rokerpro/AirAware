@@ -1,0 +1,7 @@
+plans/
+
+# Secrets (e.g. OpenAQ API key)
+.env
+
+# Local Python virtual environment
+.venv/
