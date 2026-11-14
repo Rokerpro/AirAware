@@ -13,6 +13,9 @@ Supporting endpoints:
 
 (The brief does not require an HTTP API; in the Colab-only demo the same contract can be a Python function call with these inputs/outputs.)
 
+## Implementation
+`ml/src/predict.py` implements this contract as Python functions: `health()`, `list_stations()` (also returns each station's `first_date` and `last_date`) and `forecast(station_id, date, language)`. Errors raise `predict.ForecastError`; `.to_dict()` returns the error JSON below.
+
 ## HTTP method
 - `POST /forecast`
 - `GET /stations`
@@ -43,7 +46,9 @@ The backend builds the model features itself from stored data for that station a
 | `baselines` | object | `persistence_pm25` (tomorrow = today) and `cams_pm25` (CAMS forecast via Open-Meteo, may be `null` if unavailable), so the UI can show model vs. baselines. |
 | `precaution` | string | Plain-language advice in the requested language, including the school decision ("hold outdoor PE/assembly tomorrow?"). |
 | `disclaimer` | string | Always `"Prototype, not health advice."` (and its Nepali version when `language` is `ne`). |
-| `model_version` | string | Which saved model produced the result (e.g. `random_forest_v1`). |
+| `alert_level` | string | `none` (≤ 35 μg/m3), `warning` (> 35, unhealthy for sensitive groups) or `high` (≥ 55.5, AQI "Unhealthy" for everyone: move PE and assembly indoors). The second level exists because 35 μg/m3 is exceeded on 68% of test days, so `warning` alone is on almost all winter. |
+| `actual_pm25` | number or null | Measured PM2.5 for `forecast_for` when the backend has it (past dates), else `null`. Lets the demo show whether the forecast was right. |
+| `model_version` | string | Which saved model produced the result (currently `random_forest_v2`). |
 
 `GET /stations` 200 response: `{"stations": [{"station_id": "...", "station_name": "..."}]}`.
 
@@ -79,7 +84,7 @@ The frontend shows a clear message and no forecast on any error. It never displa
 - Required baseline: "tomorrow = today". Second baseline: the CAMS forecast via Open-Meteo. It is model output, not monitor data, so it is a comparison, not ground truth.
 - Warning evaluation: recall (of days truly above 35 μg/m3, how many we warned about) and precision (of our warnings, how many were right), reported as raw counts and compared against both baselines. The warning threshold may be tuned to favour recall, since a missed warning is worse than a false one.
 - Known weak spots, to be reported honestly: smog spikes, burning season, high-pollution months, and per-station differences.
-- Station count: **(TBD)**. If only 1-2 stations have usable history, fall back to a single city-level warning.
+- Station count: 6 OpenAQ stations (Embassy Kathmandu, Dabali Handigaun, KIAS, Lagankhel SC-05, Shantichowk SC-11, Gaushala Chowk SC-01). Embassy stopped reporting in June 2026.
 - Pollutant: PM2.5, hourly readings averaged to daily means. The brief wants at least a year of mostly complete readings per station. Open-Meteo air-quality values are model estimates, so label them as such.
 
 ## Example requests
