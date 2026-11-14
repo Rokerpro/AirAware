@@ -1,0 +1,68 @@
+{
+  ".claude/agents/dataset-auditor.md": {
+    "mtime": 1794584323.8399966,
+    "seen": 1794624939.5399706,
+    "ast_hash": "e97c35edc03efb737cf81601c7f79826",
+    "semantic_hash": "e97c35edc03efb737cf81601c7f79826"
+  },
+  ".claude/agents/integration-reviewer.md": {
+    "mtime": 1794584323.8419967,
+    "seen": 1794624939.5400586,
+    "ast_hash": "5c67bb846799f9ab2b876e864c9886cf",
+    "semantic_hash": "5c67bb846799f9ab2b876e864c9886cf"
+  },
+  ".claude/agents/ml-architect.md": {
+    "mtime": 1794584323.8379965,
+    "seen": 1794624939.540072,
+    "ast_hash": "b813a3e7c4f2f553ed51fbd96fd76f94",
+    "semantic_hash": "b813a3e7c4f2f553ed51fbd96fd76f94"
+  },
+  ".claude/skills/api-inference/SKILL.md": {
+    "mtime": 1794586027.4237094,
+    "seen": 1794624939.5400798,
+    "ast_hash": "607b3a1663daa55abb1b200aa9af8f6c",
+    "semantic_hash": "607b3a1663daa55abb1b200aa9af8f6c"
+  },
+  ".claude/skills/challenge-triage/SKILL.md": {
+    "mtime": 1794586027.4137092,
+    "seen": 1794624939.5400865,
+    "ast_hash": "c6e4ef7fe013ebe1c00ce18317348109",
+    "semantic_hash": "c6e4ef7fe013ebe1c00ce18317348109"
+  },
+  ".claude/skills/dataset-audit/SKILL.md": {
+    "mtime": 1794586027.4187093,
+    "seen": 1794624939.540093,
+    "ast_hash": "6430001f0ed6ea49479d987b8520dbef",
+    "semantic_hash": "6430001f0ed6ea49479d987b8520dbef"
+  },
+  ".claude/skills/ml-research/SKILL.md": {
+    "mtime": 1794586027.4157093,
+    "seen": 1794624939.5400996,
+    "ast_hash": "e53f20b10b6dc85b3480a72d9f46bcce",
+    "semantic_hash": "e53f20b10b6dc85b3480a72d9f46bcce"
+  },
+  ".claude/skills/model-evaluation/SKILL.md": {
+    "mtime": 1794586027.4217093,
+    "seen": 1794624939.5401056,
+    "ast_hash": "96cdbfb100e3020909de3be0558fe980",
+    "semantic_hash": "96cdbfb100e3020909de3be0558fe980"
+  },
+  ".claude/skills/model-training/SKILL.md": {
+    "mtime": 1794586027.4197092,
+    "seen": 1794624939.5401115,
+    "ast_hash": "1925bec5d4c05222d22c50fdaa3969d2",
+    "semantic_hash": "1925bec5d4c05222d22c50fdaa3969d2"
+  },
+  "CLAUDE.md": {
+    "mtime": 1794625363.2696393,
+    "seen": 1794625509.3163528,
+    "ast_hash": "468e6e2e1a10b34ddb169e0089bb65f0",
+    "semantic_hash": "468e6e2e1a10b34ddb169e0089bb65f0"
+  },
+  ".claude/settings.json": {
+    "mtime": 1794625363.270336,
+    "seen": 1794625509.3163407,
+    "ast_hash": "cfe71481e74c40a7e1ffadab7d8fba30",
+    "semantic_hash": "cfe71481e74c40a7e1ffadab7d8fba30"
+  }
+}
