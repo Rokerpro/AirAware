@@ -1,0 +1,9 @@
+threshold,forecast,bad_days,caught,missed,false_alarms,warnings_issued,recall,precision
+35.0,persistence,1009,949,60,55,1004,949 of 1009,949 of 1004
+35.0,cams,1009,807,202,47,854,807 of 1009,807 of 854
+35.0,linear_regression,1009,925,84,42,967,925 of 1009,925 of 967
+35.0,random_forest,1009,942,67,48,990,942 of 1009,942 of 990
+55.5,persistence,608,547,61,57,604,547 of 608,547 of 604
+55.5,cams,608,408,200,45,453,408 of 608,408 of 453
+55.5,linear_regression,608,554,54,56,610,554 of 608,554 of 610
+55.5,random_forest,608,560,48,61,621,560 of 608,560 of 621

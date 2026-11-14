@@ -1,0 +1,8 @@
+station,n,mean_pm25,persistence,cams,linear_regression,random_forest
+"Dabali, Handigaun",322,48.4,7.06,10.68,6.72,6.42
+Embassy Kathmandu,155,50.0,7.76,14.15,8.3,8.11
+Gaushala Chowk (SC-01),194,59.0,8.45,22.97,10.11,8.9
+KIAS,292,52.6,8.98,15.7,8.94,8.79
+Lagankhel (SC-05),295,52.4,8.1,12.65,8.18,8.01
+Shantichowk (SC-11),221,51.0,8.36,13.41,7.88,7.65
+ALL,1479,52.0,8.1,14.45,8.23,7.89

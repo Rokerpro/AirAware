@@ -1,0 +1,30 @@
+{
+  "features": [
+    "pm25_today",
+    "pm25_yesterday",
+    "pm25_mean3",
+    "temp_c",
+    "humidity_pct",
+    "wind_kmh",
+    "precip_mm",
+    "pressure_hpa",
+    "month"
+  ],
+  "target": "target_pm25 (next-day daily-average PM2.5, ug/m3)",
+  "train_rows": 2402,
+  "train_dates": [
+    "2017-03-11",
+    "2025-10-31"
+  ],
+  "test_start": "2025-11-01",
+  "val_start": "2024-11-01",
+  "rf_params": {
+    "max_depth": 10,
+    "min_samples_leaf": 5
+  },
+  "seed": 42,
+  "model_versions": {
+    "linear_regression": "linear_regression_v1",
+    "random_forest": "random_forest_v1"
+  }
+}
